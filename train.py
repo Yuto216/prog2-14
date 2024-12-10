@@ -38,12 +38,10 @@ dataloader_test = torch.untils.data.DataLoader(
     batch_size=batch_size,
     shuffle=False
 )
-
 for image_batch, label_batch in dataloader_train:
     print(image_batch.shape)
     print(label_batch)
     break
-
 model=models.MyModel()
 
 loss_fn=torch.nn.CrossEntropyLoss()
@@ -63,25 +61,21 @@ acc_test_history = []
 
 for k in range(n_epochs):
     print(f'epoch{k+1}/{n_epochs}')  
-
     time_start=time.time()
     loss_train=models.train(model,dataloader_train,loss_fn,optimizer) 
     time_end=time.time()
     loss_train_history.append(loss_train)
     print(f'train loss:{loss_train}({time_end-time_start})')
-   
     loss_test=models.test(models,dataloader_test,loss_fn)
     loss_test_history.append(loss_test)
     print(f'test loss:{loss_test}')
-
     acc_train=models.test_accuracy(model,dataloader_train)
     acc_train_history.append(acc_train)
     print(f'train accuracy:{acc_train*100:.3f}%')
-
     acc_test=model.test_accuracy(model,dataloader_test)
     acc_test_history.append(acc_test)
     print(f'test accuracy:{acc_test*100:.3f}%')   
-
+    
     plt.plot(acc_train_history, label='train')
     plt.plot(acc_test_history, label='test')
     plt.xlabel('epochs')
@@ -89,7 +83,6 @@ for k in range(n_epochs):
     plt.legend()
     plt.grid()
     plt.show()
-
     plt.plot(loss_train_history, label='train')
     plt.plot(loss_test_history, label='test')
     plt.xlabel('epochs')
