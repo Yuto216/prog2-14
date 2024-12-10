@@ -1,8 +1,8 @@
 import time
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt # type: ignore
 import torch
 from torchvision import datasets
-import torchvision.transforms.v2 as transforms
+import torchvision.transforms.v2 as transforms # type: ignore
 import models
 
 
@@ -74,8 +74,8 @@ for k in range(n_epochs):
     print(f'train accuracy:{acc_train*100:.3f}%')
     acc_test=model.test_accuracy(model,dataloader_test)
     acc_test_history.append(acc_test)
-    print(f'test accuracy:{acc_test*100:.3f}%')   
-    
+    print(f'test accuracy:{acc_test*100:.3f}){time_end}s)')   
+
     plt.plot(acc_train_history, label='train')
     plt.plot(acc_test_history, label='test')
     plt.xlabel('epochs')
