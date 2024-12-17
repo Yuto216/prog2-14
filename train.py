@@ -1,8 +1,9 @@
+#コミットの練習
 import time
-import matplotlib.pyplot as plt # type: ignore
+import matplotlib.pyplot as plt
 import torch
 from torchvision import datasets
-import torchvision.transforms.v2 as transforms # type: ignore
+import torchvision.transforms.v2 as transforms 
 import models
 
 
