@@ -24,15 +24,15 @@ class MyModel(nn.Module):
     def test_accuracy(model,dataloader,device='cpu'):
         n_corrects=0
 
-        model.to(device)
-
+        model=model.to(device)
         model.eval()
         for image_batch,label_batch in dataloader:
-            image_batch.to(device)
-            label_batch.to(device)
+            image_batch=image_batch.to(device)
+            label_batch=label_batch.to(device)
 
             with torch.no_grad():
                 logits_batch=model(image_batch)
+                
 
                 predict_batch=logits_batch.argmax(dim=1)
                 n_corrects+=(label_batch==predict_batch).sum().item()
@@ -41,11 +41,11 @@ class MyModel(nn.Module):
 
         return accuracy
     def train(model,dataloader,loss_fn,optimizer,device='cpu'):
-        model.train()
+        model=model.to(device)
         model.train()
         for image_batch,label_batch in dataloader:
-            image_batch.to(device)
-            label_batch.to(device)
+            image_batch=image_batch.to(device)
+            label_batch=label_batch.to(device)
 
 
             logits_batch=model(image_batch)
@@ -59,10 +59,11 @@ class MyModel(nn.Module):
             return loss.item()
     def test(model,dataloder,loss_fn,device='cpu'):
         loss_total=0.0
+        model=model.to(device)
         model.eval()
         for image_batch,label_batch in dataloder:
-            image_batch.to(device)
-            label_batch.to(device)
+            image_batch=image_batch.to(device)
+            label_batch=label_batch.to(device)
             with torch.no_grad():
                 logits_batch=model(image_batch)
 

@@ -14,7 +14,7 @@ print(f'unm of datasets:{len(ds_train)}')
 image,target=ds_train[1]
 print(type(image),target)
 
-plt.imshow(image,cmap='gray_r')
+plt.imshow(image,cmap='gray_r',vmin=0,vmax=255)
 plt.title(target)
 plt.show()
 

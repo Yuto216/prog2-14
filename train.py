@@ -6,6 +6,7 @@ from torchvision import datasets
 import torchvision.transforms.v2 as transforms 
 import models
 
+device='cuda'if torch.cuda.is_available()else 'cpu'
 
 ds_transform = transforms.Compose([
     transforms.ToImage(),
@@ -52,6 +53,11 @@ optimizer=torch.optim.SGD(model.parameters(),lr=learning_rate)
 
 acc_test=models.test_accuracy(model,dataloader_test)
 print(f'test accuracy:{acc_test*100:.2f}%')
+
+models.train(models,dataloader_test,loss_fn,optimizer)
+
+acc_test=models.test_accuracy(model,dataloader_test)
+print(f'test accuracy:{acc_test*100:.3f}%')
 
 n_epochs=5
 
