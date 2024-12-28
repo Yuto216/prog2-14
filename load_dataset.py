@@ -18,10 +18,10 @@ plt.imshow(image,cmap='gray_r',vmin=0,vmax=255)
 plt.title(target)
 plt.show()
 
-image_tensor=transforms.functional.to_image(image)
-image_tensor=transforms.functional.to_dtype(image,dtype=torch.float32,scale=True)
-print(image_tensor.shape,image_tensor.dtype)
-print(image.min(),image.max())
+image_tensor = transforms.ToTensor()(image) 
+image_tensor = image_tensor.to(dtype=torch.float32)  
+print(image_tensor.shape, image_tensor.dtype)
+print(image_tensor.min().item(), image_tensor.max().item())
 
 #for i in range(5):
  #   for j in range(5):
